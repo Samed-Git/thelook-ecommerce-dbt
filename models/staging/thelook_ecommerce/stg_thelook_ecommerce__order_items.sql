@@ -9,22 +9,24 @@ source as (
 renamed as (
 
     select
-        -- primary key
+        -- Primary Key
         id as item_id,
 
-        --foreign key
+        -- Foreign Keys
         order_id,
         user_id as customer_id,
         product_id,
         inventory_item_id,
 
-        --item attribute
-        status as item_status,
-        created_at,
-        shipped_at,
-        delivered_at,
-        returned_at,
-        sale_price as item_sale_price
+        -- Item Attributes
+        TRIM(LOWER(status)) as item_status,
+        ROUND(sale_price, 2) as item_sale_price,
+
+        -- Timestamps
+        CAST(created_at AS TIMESTAMP) as created_at,
+        CAST(shipped_at AS TIMESTAMP) as shipped_at,
+        CAST(delivered_at AS TIMESTAMP) as delivered_at,
+        CAST(returned_at AS TIMESTAMP) as returned_at
 
     from source
 
