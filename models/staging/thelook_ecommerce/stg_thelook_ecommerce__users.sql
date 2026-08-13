@@ -15,14 +15,15 @@ renamed as (
         -- Customer Attributes
         first_name as customer_first_name,
         last_name as customer_last_name,
-        email as customer_email,
+        ARRAY_TO_STRING([first_name, last_name], ' ') as customer_full_name,
+        LOWER(TRIM(email)) as customer_email,
         age as customer_age,
         gender as customer_gender,
 
         -- Address & Location Info
-        street_address as customer_street_address,
+        NULLIF(TRIM(street_address), '') as customer_street_address,
         postal_code as customer_postal_code,
-        city as customer_city,
+        NULLIF(TRIM(city), '') as customer_city,
         state as customer_state,
         country as customer_country,
         latitude as customer_latitude,
@@ -30,10 +31,10 @@ renamed as (
         user_geom as customer_geom,
 
         -- Marketing & Metadata
-        traffic_source,
+        traffic_source as customer_traffic_source,
 
         -- Timestamps
-        created_at
+        CAST(created_at AS TIMESTAMP) as created_at
 
     from source
 
