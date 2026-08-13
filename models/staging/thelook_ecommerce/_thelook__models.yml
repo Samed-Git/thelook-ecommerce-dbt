@@ -19,7 +19,8 @@ models:
         description: "Status of the order."
         tests:
           - accepted_values:
-              values: ['Cancelled', 'Complete', 'Processing', 'Refunded', 'Shipped']
+              arguments:
+                values: ['Cancelled', 'Complete', 'Processing', 'Refunded', 'Shipped']
 
       - name: creation_date
         description: "Timestamp when the order was created."
