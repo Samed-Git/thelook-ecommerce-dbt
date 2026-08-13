@@ -1,0 +1,27 @@
+version: 2
+
+models:
+  - name: stg_thelook__orders
+    description: "Staged order records from thelook_ecommerce source dataset."
+    columns:
+      - name: order_id
+        description: "Primary key for each order."
+        tests:
+          - unique
+          - not_null
+
+      - name: customer_id
+        description: "Foreign key referencing the customer."
+        tests:
+          - not_null
+
+      - name: order_status
+        description: "Status of the order."
+        tests:
+          - accepted_values:
+              values: ['Cancelled', 'Complete', 'Processing', 'Refunded', 'Shipped']
+
+      - name: creation_date
+        description: "Timestamp when the order was created."
+        tests:
+          - not_null
