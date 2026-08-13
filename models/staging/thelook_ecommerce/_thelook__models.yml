@@ -24,7 +24,6 @@ models:
 
       - name: creation_date
         description: "Timestamp when the order was created."
-        
 
   - name: stg_thelook_ecommerce__users
     description: "Staged customer records from thelook_ecommerce source dataset."
@@ -94,4 +93,46 @@ models:
 
       - name: created_at
         data_type: timestamp
+        description: ""
+
+  - name: stg_thelook_ecommerce__products
+    description: "Staged product records from thelook_ecommerce source dataset."
+    columns:
+      - name: product_id
+        data_type: int64
+        description: "Primary key for each product."
+        tests:
+          - unique
+          - not_null
+
+      - name: distribution_center_id
+        data_type: int64
+        description: ""
+
+      - name: product_name
+        data_type: string
+        description: ""
+
+      - name: product_category
+        data_type: string
+        description: ""
+
+      - name: product_brand
+        data_type: string
+        description: ""
+
+      - name: product_department
+        data_type: string
+        description: ""
+
+      - name: product_sku
+        data_type: string
+        description: ""
+
+      - name: product_cost
+        data_type: float64
+        description: ""
+
+      - name: product_retail_price
+        data_type: float64
         description: ""
