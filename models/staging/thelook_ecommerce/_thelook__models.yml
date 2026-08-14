@@ -4,17 +4,30 @@ models:
   - name: stg_thelook_ecommerce__orders
     columns:
       - name: order_id
+        tests:
+          - unique
+          - not_null
       - name: customer_id
       - name: order_status
-      - name: creation_date
+      - name: customer_gender
+      - name: number_of_items
+      - name: created_at
+      - name: shipped_at
+      - name: delivered_at
+      - name: returned_at
 
   - name: stg_thelook_ecommerce__users
     columns:
       - name: customer_id
         data_type: int64
+        tests:
+          - unique
+          - not_null
       - name: customer_first_name
         data_type: string
       - name: customer_last_name
+        data_type: string
+      - name: customer_full_name
         data_type: string
       - name: customer_email
         data_type: string
@@ -38,7 +51,7 @@ models:
         data_type: float64
       - name: customer_geom
         data_type: geography
-      - name: traffic_source
+      - name: customer_traffic_source
         data_type: string
       - name: created_at
         data_type: timestamp
@@ -47,6 +60,9 @@ models:
     columns:
       - name: product_id
         data_type: int64
+        tests:
+          - unique
+          - not_null
       - name: distribution_center_id
         data_type: int64
       - name: product_name
@@ -68,6 +84,9 @@ models:
     columns:
       - name: item_id
         data_type: int64
+        tests:
+          - unique
+          - not_null
       - name: order_id
         data_type: int64
       - name: customer_id
