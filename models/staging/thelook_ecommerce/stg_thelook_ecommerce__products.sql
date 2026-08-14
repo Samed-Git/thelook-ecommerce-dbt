@@ -16,15 +16,15 @@ renamed as (
         distribution_center_id,
 
         -- Product Attributes
-        name as product_name,
-        category as product_category,
-        brand as product_brand,
-        department as product_department,
-        sku as product_sku,
+        nullif(trim(name), '') as product_name,
+        nullif(trim(category), '') as product_category,
+        nullif(trim(brand), '') as product_brand,
+        nullif(trim(department), '') as product_department,
+        nullif(trim(sku), '') as product_sku,
 
         -- Financial Attributes
-        cost as product_cost,
-        retail_price as product_retail_price
+        round(cost, 2) as product_cost,
+        round(retail_price, 2) as product_retail_price
 
     from source
 
