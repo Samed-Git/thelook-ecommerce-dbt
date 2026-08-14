@@ -14,15 +14,15 @@ renamed as (
         user_id as customer_id,
 
         -- Attributes
-        status as order_status,
-        gender as customer_gender,
+        nullif(trim(lower(status)), '') as order_status,
+        nullif(trim(lower(gender)), '') as customer_gender,
         num_of_item as number_of_items,
 
         -- Timestamps
-        created_at,
-        returned_at,
-        shipped_at,
-        delivered_at
+        safe_cast(created_at as timestamp) as created_at,
+        safe_cast(returned_at as timestamp) as returned_at,
+        safe_cast(shipped_at as timestamp) as shipped_at,
+        safe_cast(delivered_at as timestamp) as delivered_at
 
     from source
 
