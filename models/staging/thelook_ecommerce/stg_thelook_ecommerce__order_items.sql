@@ -19,14 +19,14 @@ renamed as (
         inventory_item_id,
 
         -- Item Attributes
-        TRIM(LOWER(status)) as item_status,
-        ROUND(sale_price, 2) as item_sale_price,
+        nullif(trim(lower(status)), '') as item_status,
+        round(sale_price, 2) as item_sale_price,
 
         -- Timestamps
-        CAST(created_at AS TIMESTAMP) as created_at,
-        CAST(shipped_at AS TIMESTAMP) as shipped_at,
-        CAST(delivered_at AS TIMESTAMP) as delivered_at,
-        CAST(returned_at AS TIMESTAMP) as returned_at
+        safe_cast(created_at as timestamp) as created_at,
+        safe_cast(shipped_at as timestamp) as shipped_at,
+        safe_cast(delivered_at as timestamp) as delivered_at,
+        safe_cast(returned_at as timestamp) as returned_at
 
     from source
 
