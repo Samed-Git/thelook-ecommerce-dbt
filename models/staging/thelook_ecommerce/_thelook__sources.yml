@@ -4,8 +4,16 @@ sources:
   - name: thelook_ecommerce
     database: bigquery-public-data
     schema: thelook_ecommerce
+    description: "Raw e-commerce transactional data from The Look public dataset in BigQuery. Contains source tables for orders, users, order items, and product inventory used as the foundational raw layer for downstream analytics engineering models."
     tables:
       - name: orders
+        description: "Raw transactional table containing order-level records, including order status, customer IDs, creation timestamps, and delivery dates."
+
       - name: users
+        description: "Raw user profiles table. One row per registered customer. Contains user demographics, location details, and account creation dates."
+
       - name: order_items
+        description: "Raw order line items table. One row per item sold in an order. Includes item sale price, cost, and shipping status."
+
       - name: products
+        description: "Raw product catalog table. One row per product SKU. Contains product cost, retail price, category, and brand details."
