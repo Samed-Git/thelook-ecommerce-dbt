@@ -4,11 +4,21 @@ models:
   - name: stg_thelook_ecommerce__orders
     columns:
       - name: order_id
-        tests:
+        data_tests:
           - unique
           - not_null
       - name: customer_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_thelook_ecommerce__users')
+                field: customer_id
       - name: order_status
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['cancelled' , 'complete' , 'processing' , 'returned' , 'shipped']
       - name: customer_gender
       - name: number_of_items
       - name: created_at
@@ -16,11 +26,13 @@ models:
       - name: delivered_at
       - name: returned_at
 
+--stg_thelook_ecommerce__users
+
   - name: stg_thelook_ecommerce__users
     columns:
       - name: customer_id
         data_type: int64
-        tests:
+        data_tests:
           - unique
           - not_null
       - name: customer_first_name
@@ -56,11 +68,14 @@ models:
       - name: created_at
         data_type: timestamp
 
+
+--stg_thelook_ecommerce__products
+
   - name: stg_thelook_ecommerce__products
     columns:
       - name: product_id
         data_type: int64
-        tests:
+        data_tests:
           - unique
           - not_null
       - name: distribution_center_id
@@ -80,11 +95,14 @@ models:
       - name: product_retail_price
         data_type: float64
 
+
+--stg_thelook_ecommerce__order_items
+
   - name: stg_thelook_ecommerce__order_items
     columns:
       - name: item_id
         data_type: int64
-        tests:
+        data_tests:
           - unique
           - not_null
       - name: order_id
