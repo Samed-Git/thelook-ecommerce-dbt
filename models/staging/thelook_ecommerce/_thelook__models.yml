@@ -26,7 +26,6 @@ models:
       - name: delivered_at
       - name: returned_at
 
---stg_thelook_ecommerce__users
 
   - name: stg_thelook_ecommerce__users
     columns:
@@ -69,7 +68,6 @@ models:
         data_type: timestamp
 
 
---stg_thelook_ecommerce__products
 
   - name: stg_thelook_ecommerce__products
     columns:
@@ -96,7 +94,6 @@ models:
         data_type: float64
 
 
---stg_thelook_ecommerce__order_items
 
   - name: stg_thelook_ecommerce__order_items
     columns:
