@@ -16,6 +16,10 @@ models:
         description: "Foreign key referencing dim_users."
         tests:
           - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_users')
+                field: customer_id
 
       - name: order_status
         data_type: string
